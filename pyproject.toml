@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "simple-poetry-package"
-version = "0.1.0"
+version = "0.2.0"
 description = "'Creating an example poetry package'"
 authors = ["rahul1990bhatia <rahul1990bhatia@gmail.com>"]
 license = "MIT"
