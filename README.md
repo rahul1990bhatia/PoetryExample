@@ -37,6 +37,7 @@ This command will create a virtual environment (if one doesn't exist) and instal
 
 Here's an overview of the project's structure:
 
+```
 simple-poetry-package/
 ├── src/
 │   └── simple_poetry_package/
@@ -46,6 +47,7 @@ simple-poetry-package/
 ├── pyproject.toml
 ├── poetry.lock
 └── README.md
+```
 
 - `src/simple_poetry_package/`: Contains the source code for the package.
 - `pyproject.toml`: Defines the project and its dependencies.
