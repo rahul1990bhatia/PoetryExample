@@ -1,0 +1,68 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# Bandit is a security linter designed to find common security issues in Python code.
+# This action will run Bandit on your codebase.
+# The results of the scan will be found under the Security tab of your repository.
+
+# https://github.com/marketplace/actions/bandit-scan is ISC licensed, by abirismyname
+# https://pypi.org/project/bandit/ is Apache v2.0 licensed, by PyCQA
+
+name: CI Pipeline
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "main" ]
+  schedule:
+    - cron: '18 20 * * 4'
+
+
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: Install dependencies
+      run: |
+        poetry install
+
+    - name: Run Black
+      run: |
+        poetry run black .
+
+    - name: Run isort
+      run: |
+        poetry run isort .
+
+    - name: Run mypy
+      run: |
+        poetry run mypy .
+
+    - name: Run pytest
+      run: |
+        poetry run pytest
+
+    - name: Bandit Scan
+      uses: shundor/python-bandit-scan@9cc5aa4a006482b8a7f91134412df6772dbda22c
+      with:
+        exit_zero: true 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information.
