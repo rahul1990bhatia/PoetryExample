@@ -10,6 +10,7 @@ readme = "README.md"
 python = "^3.11"
 pylint = "^3.2.6"
 mypy = "^1.11.1"
+bandit = "^1.7.9"
 
 [tool.poetry.scripts]
 hello_world = 'simple_poetry_package.cli:cli'
