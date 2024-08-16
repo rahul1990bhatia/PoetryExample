@@ -8,6 +8,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+pylint = "^3.2.6"
+mypy = "^1.11.1"
 
 [tool.poetry.scripts]
 hello_world = 'simple_poetry_package.cli:cli'
